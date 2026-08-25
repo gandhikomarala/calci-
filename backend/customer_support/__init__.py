@@ -1,0 +1,3 @@
+from backend.customer_support.router import router as customer_support_router
+from backend.customer_support.service import CustomerSupportTicketService
+from backend.customer_support.repository import CustomerSupportTicketRepository

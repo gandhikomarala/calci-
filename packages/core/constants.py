@@ -1,0 +1,17 @@
+"""System-wide global constants."""
+
+APP_NAME: str = "Enterprise Customer Churn Prediction & MLOps Platform"
+DEFAULT_PAGE_SIZE: int = 20
+MAX_PAGE_SIZE: int = 100
+MAX_BATCH_PREDICTION_RECORDS: int = 1_000_000
+MAX_DATASET_UPLOAD_SIZE_BYTES: int = 500 * 1024 * 1024  # 500MB
+
+DEFAULT_CHURN_RISK_LOW: float = 0.30
+DEFAULT_CHURN_RISK_HIGH: float = 0.70
+
+DRIFT_PSI_STABLE_THRESHOLD: float = 0.10
+DRIFT_PSI_WARNING_THRESHOLD: float = 0.25
+DRIFT_KS_PVALUE_THRESHOLD: float = 0.05
+
+DEFAULT_DECIMAL_PRECISION: int = 4
+DATETIME_FORMAT_ISO: str = "%Y-%m-%dT%H:%M:%SZ"

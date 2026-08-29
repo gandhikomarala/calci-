@@ -1,15 +1,20 @@
-# Contributing to FinGuard AI
+# Contributing Guidelines
 
-Thank you for contributing to FinGuard AI. This repository is a proprietary financial risk detection and MLOps platform.
+Thank you for contributing to the platform! Please review our guidelines below before submitting pull requests.
 
 ## Development Workflow
-1. Create a feature branch: `git checkout -b feature/your-feature-name`
-2. Implement code with type hints and docstrings.
-3. Run static quality checks: `ruff check .` and `mypy .`
-4. Execute automated test suites: `pytest tests/`
-5. Submit a pull request with complete verification evidence.
+1. Fork and clone the repository.
+2. Create a focused feature branch from `main`:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Implement your changes adhering to clean architecture principles.
+4. Add corresponding unit and integration tests under `tests/`.
+5. Run the test suite and linters to verify zero regressions.
+6. Commit using standard Conventional Commits (`feat:`, `fix:`, `docs:`, `test:`, `refactor:`).
+7. Push your branch and open a Pull Request.
 
-## Standards
-- All code must follow PEP 8 and TypeScript strict mode.
-- Maintain test coverage >= 80%.
-- Do not commit real credentials, sensitive secrets, or real PII.
+## Code Standards
+- Adhere strictly to PEP 8 / clean code conventions.
+- Maintain type hints across all service interfaces and business logic.
+- Ensure thorough docstrings explaining domain invariants and algorithmic complexity.

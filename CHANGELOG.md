@@ -1,16 +1,12 @@
 # Changelog
 
-All notable changes to FinGuard AI are documented in this file.
+All notable changes to this project will be documented in this file.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), adhering to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.0] - 2026-08-22
+## [1.0.0] - 2026-08-29
 ### Added
-- Multi-signal risk decision engine with dynamic rule weighting.
-- TreeSHAP factor attributions and PSI/KS statistical drift monitoring.
-- 33 enterprise React feature views and 8 Zustand state stores.
-- 15 AWS Terraform production modules and 30 Alembic DDL migrations.
-
-## [1.0.0] - 2026-08-20
-### Added
-- Initial enterprise architecture with 55 domain subpackages.
-- Synthetic financial fraud transaction generator (15 fraud scenarios).
-- Real-time LightGBM and Random Forest GBDT classifiers.
+- Enterprise risk computation engine and high-throughput ingestion pipelines.
+- Distributed task dispatchers and analytics BI reporting layer.
+- Comprehensive end-to-end test suite and automated regression testing.
+- Real-time event streaming connectors and data quality validation gates.
+- Production deployment blueprints and Docker multi-stage containerization.

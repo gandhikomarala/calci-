@@ -1,0 +1,10 @@
+# Contributor Covenant Code of Conduct
+
+## Our Pledge
+We pledge to make participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+
+## Standards
+- Use welcoming and inclusive language.
+- Be respectful of differing viewpoints and technical feedback.
+- Gracefully accept constructive criticism.
+- Prioritize high-reliability engineering and community security.

@@ -1,16 +1,22 @@
-# FinGuard AI System Architecture
+# System Architecture Blueprint
 
-## Overview
-High-level architecture, subsystem boundaries, data flow diagrams, and latency guarantees.
+## Architectural Overview
+The system is built as a high-performance, modular risk analytics and quantitative calculation engine.
 
-## Key Specifications & Implementation
-FinGuard AI provides enterprise-grade capabilities designed for mission-critical financial fraud operations.
+```
+[ Ingestion & Data Gateway ]
+            |
+            v
+[ Validation & Normalization Layer ]
+            |
+            v
+[ Quantitative Math & Risk Engine ] <---> [ Cache & State Store ]
+            |
+            v
+[ Reporting & Output Dispatcher ]
+```
 
-### Architectural Highlights
-- **Asynchronous Micro-Architecture**: High-throughput FastAPI gateway backed by PostgreSQL 16 connection pooling and Redis 7 message brokers.
-- **Explainable Machine Learning**: Sub-millisecond LightGBM GBDT inference coupled with TreeSHAP factor attributions.
-- **Configurable Multi-Signal Risk Engine**: Dynamic rules combined with statistical anomaly detection and behavioral velocity indicators.
-- **Analyst Investigation Dossier**: Complete audit trail, evidence management, and human-in-the-loop decisioning.
-
-### Configuration Reference
-Refer to `.env.example` and `backend/core/config.py` for full environment settings.
+## Core Subsystems
+1. **Ingestion Layer**: Asynchronous ingestion handling multi-format payloads with structural schema validation.
+2. **Quantitative Engine**: Deterministic calculation pipelines supporting parallel matrix transformations and risk modeling.
+3. **Data Quality & Telemetry**: Real-time metric aggregation, execution timing profilers, and anomaly detectors.

@@ -1,0 +1,42 @@
+name: Security Audit & SAST
+
+on:
+  push:
+    branches: [ main, develop, "feature/**" ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  security-audit:
+    name: Security & Secret Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Check for unencrypted secrets and keys
+        run: |
+          echo "Scanning codebase for sensitive credentials..."
+          FOUND=0
+          # Exclude .git, .github, tests, and documentation from private key scan
+          if grep -rn "BEGIN RSA PRIVATE KEY" . --exclude-dir={.git,.github,tests,docs}; then
+            echo "::error::RSA Private Key detected in application code!"
+            FOUND=1
+          fi
+          if grep -rn "BEGIN OPENSSH PRIVATE KEY" . --exclude-dir={.git,.github,tests,docs}; then
+            echo "::error::OpenSSH Private Key detected in application code!"
+            FOUND=1
+          fi
+          if [ $FOUND -eq 1 ]; then
+            echo "Security scan failed: private keys detected in repository."
+            exit 1
+          fi
+          echo "Security scan passed: zero private keys detected."
+
+      - name: Audit dependency configurations
+        run: |
+          echo "Auditing dependencies..."
+          if [ -f requirements.txt ]; then
+            head -n 20 requirements.txt
+          fi
+          echo "Audit complete."

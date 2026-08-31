@@ -1,6 +1,5 @@
 # FinGuard AI — Intelligent Financial Transaction Risk Detection, Fraud Investigation & MLOps Platform
 
-[![License: Proprietary](https://img.shields.io/badge/License-Proprietary-blue.svg)](LICENSE)
 [![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-brightgreen.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-teal.svg)](https://fastapi.tiangolo.com/)
 [![LightGBM](https://img.shields.io/badge/LightGBM-4.3.0-orange.svg)](https://lightgbm.readthedocs.io/)

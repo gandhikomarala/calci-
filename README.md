@@ -17,7 +17,7 @@ Calci Studio — Scientific RPN & Loan Amortization Suite is a production-grade 
 
 ### 1. Set Up Python Virtual Environment
 ```bash
-git clone gandhikomarala/calci-.git
+git clone git@github.com:gandhikomarala/calci-.git
 cd calci_dash
 python -m venv venv
 # Windows:

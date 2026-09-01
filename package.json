@@ -1,19 +1,8 @@
 {
-  "name": "customer-churn-platform-monorepo",
-  "version": "1.0.0",
-  "private": true,
-  "workspaces": [
-    "apps/web",
-    "frontend"
-  ],
+  "name": "calci_dash",
+  "version": "2.4.0",
   "scripts": {
-    "dev": "npm --workspace=frontend run dev",
-    "build": "npm --workspace=frontend run build",
-    "test": "npm --workspace=frontend run test",
-    "lint": "npm --workspace=frontend run lint"
-  },
-  "devDependencies": {
-    "prettier": "^3.2.5",
-    "typescript": "^5.4.3"
+    "test": "pytest tests/",
+    "build": "docker build -t calci_dash ."
   }
 }

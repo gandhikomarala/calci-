@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calci Studio — Scientific & Mortgage Engineering Suite</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: #f1f5f9; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; }
+    header { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 18px 48px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-size: 20px; font-weight: 800; color: #0f172a; }
+    main { flex: 1; max-width: 1200px; margin: 40px auto; width: 100%; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+    .tool-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 24px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
+    .screen { background: #0f172a; color: #38bdf8; border-radius: 16px; padding: 24px; text-align: right; font-size: 36px; font-weight: 800; font-family: monospace; min-height: 85px; margin-bottom: 24px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.5); }
+    .keypad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .k-btn { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 18px; font-size: 18px; font-weight: 700; color: #334155; cursor: pointer; transition: 0.1s; }
+    .k-btn:hover { background: #e2e8f0; }
+    .k-btn.op { background: #3b82f6; color: #fff; border-color: #2563eb; }
+    .k-btn.op:hover { background: #2563eb; }
+    .k-btn.eq { background: #10b981; color: #fff; border-color: #059669; grid-column: span 2; }
+    .k-btn.clear { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; color: #64748b; margin-bottom: 6px; }
+    .form-group input { width: 100%; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 12px 16px; font-size: 16px; font-weight: 600; color: #0f172a; }
+    .result-pill { background: #ecfdf5; border: 1.5px solid #a7f3d0; border-radius: 16px; padding: 24px; text-align: center; margin-top: 20px; }
+    .result-val { font-size: 36px; font-weight: 900; color: #059669; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">📐 Calci Studio Pro</div>
+    <div style="font-size:13px; color:#64748b; font-weight:600;">Standard IEEE 754 Floating-Point Engine</div>
+  </header>
+  <main>
+    <div class="tool-card">
+      <h3 style="font-size:20px; font-weight:800; margin-bottom:16px;">Scientific Math Engine</h3>
+      <div class="screen" id="disp">0</div>
+      <div class="keypad">
+        <button class="k-btn clear" onclick="cClear()">AC</button>
+        <button class="k-btn" onclick="cAdd('(')">(</button>
+        <button class="k-btn" onclick="cAdd(')')">)</button>
+        <button class="k-btn op" onclick="cAdd('/')">÷</button>
+        
+        <button class="k-btn" onclick="cAdd('7')">7</button>
+        <button class="k-btn" onclick="cAdd('8')">8</button>
+        <button class="k-btn" onclick="cAdd('9')">9</button>
+        <button class="k-btn op" onclick="cAdd('*')">×</button>
+        
+        <button class="k-btn" onclick="cAdd('4')">4</button>
+        <button class="k-btn" onclick="cAdd('5')">5</button>
+        <button class="k-btn" onclick="cAdd('6')">6</button>
+        <button class="k-btn op" onclick="cAdd('-')">−</button>
+        
+        <button class="k-btn" onclick="cAdd('1')">1</button>
+        <button class="k-btn" onclick="cAdd('2')">2</button>
+        <button class="k-btn" onclick="cAdd('3')">3</button>
+        <button class="k-btn op" onclick="cAdd('+')">+</button>
+        
+        <button class="k-btn" onclick="cAdd('0')">0</button>
+        <button class="k-btn" onclick="cAdd('.')">.</button>
+        <button class="k-btn eq" onclick="cEval()">=</button>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <h3 style="font-size:20px; font-weight:800; margin-bottom:16px;">Mortgage & Amortization Suite</h3>
+      <div class="form-group">
+        <label>Property Loan Principal ($)</label>
+        <input type="number" id="m-p" value="450000">
+      </div>
+      <div class="form-group">
+        <label>Interest Rate (Annual %)</label>
+        <input type="number" id="m-r" value="5.8" step="0.1">
+      </div>
+      <div class="form-group">
+        <label>Term Duration (Years)</label>
+        <input type="number" id="m-y" value="30">
+      </div>
+      <button class="k-btn op" style="width:100%; border-radius:12px; padding:14px; font-size:16px;" onclick="calcMortgage()">Calculate Monthly Amortization</button>
+      
+      <div class="result-pill">
+        <div style="font-size:13px; font-weight:700; color:#065f46; text-transform:uppercase;">Principal & Interest Payment</div>
+        <div class="result-val" id="mortgage-res">$2,640.82</div>
+      </div>
+    </div>
+  </main>
+  <script>
+    let e = '';
+    function cAdd(v) { if (e === '0' && v !== '.') e = ''; e += v; document.getElementById('disp').innerText = e; }
+    function cClear() { e = ''; document.getElementById('disp').innerText = '0'; }
+    function cEval() { try { const r = eval(e); document.getElementById('disp').innerText = r; e = r.toString(); } catch(err) { document.getElementById('disp').innerText = 'Error'; e = ''; } }
+    function calcMortgage() {
+      const p = parseFloat(document.getElementById('m-p').value);
+      const r = (parseFloat(document.getElementById('m-r').value) / 100) / 12;
+      const n = parseFloat(document.getElementById('m-y').value) * 12;
+      const pay = (p * r * Math.pow(1+r, n)) / (Math.pow(1+r, n) - 1);
+      document.getElementById('mortgage-res').innerText = `$${pay.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
